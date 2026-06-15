@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen del Alma - San Juan Eudes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EG5ZJQ92CP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EG5ZJQ92CP');
+    </script>
+
+    <style>
+        :root {
+            --corazon-rojo: #C62828;
+            --oro-vivo: #FFB300;
+            --oro-oscuro: #B78A02;
+            --crema-viva: #FFFDF9;
+            --fondo-gradiente: linear-gradient(135deg, #FFF9E6 0%, #F5E6CC 100%);
+            --texto-principal: #2C2520;
+            --verde-vida: #2E7D32;
+            --verde-claro: #E8F5E9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--fondo-gradiente);
+            color: var(--texto-principal);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 20px auto;
+            background: var(--crema-viva);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(183, 138, 2, 0.15);
+            border: 2px solid var(--oro-vivo);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 3px double var(--corazon-rojo);
+            padding-bottom: 25px;
+        }
+
+        .flame-icon {
+            font-size: 32px;
+            color: var(--corazon-rojo);
+            text-shadow: 0 2px 4px rgba(255,179,0,0.4);
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--corazon-rojo);
+            font-size: 2rem;
+            letter-spacing: 1px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            color: var(--oro-oscuro);
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quote {
+            font-style: italic;
+            background: #FFF5DC;
+            padding: 18px;
+            border-left: 5px solid var(--corazon-rojo);
+            margin: 20px 0;
+            font-size: 1rem;
+            border-radius: 0 12px 12px 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .instructions {
+            font-size: 0.9rem;
+            color: #555;
+            text-align: left;
+            background: #FFF9EB;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 179, 0, 0.3);
+        }
+
+        .category-title {
+            font-family: 'Cinzel', serif;
+            background: linear-gradient(90deg, var(--corazon-rojo) 0%, #E53935 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .question-card {
+            background: white;
+            border: 1px solid #F0E6D2;
+            border-radius: 10px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--oro-vivo);
+        }
+
+        .question-text {
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #3E2723;
+            font-size: 1.05rem;
+        }
+
+        .question-quote {
+            font-size: 0.88rem;
+            font-style: italic;
+            color: #795548;
+            margin-bottom: 12px;
+            display: block;
+            border-left: 3px solid var(--oro-vivo);
+            padding-left: 10px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px;
+            border: 1px solid #E0D7C6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            background: #FAF8F5;
+        }
+
+        .option-label:hover {
+            background-color: #FFFDF0;
+            border-color: var(--oro-vivo);
+        }
+
+        .option-label input {
+            margin-right: 14px;
+            accent-color: var(--corazon-rojo);
+            transform: scale(1.2);
+        }
+
+        .option-label.selected {
+            background-color: var(--verde-claro);
+            border-color: var(--verde-vida);
+            color: #1B5E20;
+            font-weight: 600;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, #D32F2F 0%, var(--corazon-rojo) 100%);
+            color: white;
+            border: none;
+            padding: 18px;
+            font-size: 1.25rem;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 35px;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(198, 40, 40, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: linear-gradient(90deg, var(--corazon-rojo) 0%, #FF1744 100%);
+            box-shadow: 0 6px 16px rgba(198, 40, 40, 0.4);
+            transform: translateY(-1px);
+        }
+
+        #result-card {
+            display: none;
+            margin-top: 35px;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 3px solid var(--oro-vivo);
+            background: #FFFDF6;
+            box-shadow: 0 6px 20px rgba(183, 138, 2, 0.2);
+        }
+
+        .result-score {
+            font-size: 2.3rem;
+            font-weight: bold;
+            color: var(--corazon-rojo);
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        .result-level {
+            font-family: 'Cinzel', serif;
+            font-size: 1.55rem;
+            color: var(--verde-vida);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #7A6F66;
+            border-top: 1px solid #E0D7C6;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="flame-icon">🔥❤️</div>
+        <h1>EXAMEN DEL ALMA</h1>
+        <h2>Crecimiento Espiritual según San Juan Eudes</h2>
+        <div class="quote">
+            "El Corazón de Jesús es una hoguera inmensa de amor... Viva Jesús, nuestro amor, que reine en todos los corazones."<br>
+            <small>— San Juan Eudes</small>
+        </div>
+        <div class="instructions">
+            <strong>Instrucciones:</strong> Responde con total honestidad a las 33 preguntas inspiradas en el <em>Memoriale Beneficiorum Dei</em>. Cada opción representa un peldaño en la madurez de tu unión con los Sagrados Corazones, desde el inicio del camino (1 punto) hasta la asimilación completa de la vida de Cristo (5 puntos). El puntaje máximo es de 165 puntos.
+        </div>
+    </header>
+
+    <form id="quiz-form">
+        <div id="questions-container"></div>
+        
+        <button type="submit" class="btn-submit">Examen del Alma</button>
+    </form>
+
+    <div id="result-card">
+        <h2>Tu Nivel Espiritual</h2>
+        <div class="result-score" id="score-text">0 / 165</div>
+        <div class="result-level" id="level-text">Cargando...</div>
+        <div class="quote" style="border-left: 5px solid var(--oro-vivo); margin: 0; background: #FFFBF0;">
+            "Por todos tus favores te alabo, te bendigo y te quedo agradecido para siempre."<br>
+            <small>San Juan Eudes (1601–1680)</small>
+        </div>
+    </div>
+
+    <footer>
+        Examen de Madurez Espiritual basado en las obras místicas y virtudes de San Juan Eudes.
+    </footer>
+</div>
+
+<script>
+const quizData = [
+    {
+        category: "CATEGORÍA 1 — Vida de Oración",
+        questions: [
+            {
+                id: 1,
+                q: "Con respecto a la oración personal diaria, ¿buscas conscientemente unirte al Corazón de Jesús para que Él ore en ti?",
+                quote: "San Juan Eudes enseñaba que el cristiano debe continuar y completar la vida de Jesús en la tierra.",
+                options: [
+                    { t: "Raras veces oro o solo me acuerdo de Dios cuando paso por necesidades graves.", v: 1 },
+                    { t: "Intento orar algunos días de la semana, pero me cuesta mantener la constancia.", v: 2 },
+                    { t: "Oro diariamente cumpliendo mis devociones, aunque me distraigo con facilidad.", v: 3 },
+                    { t: "Reservo un momento sagrado al día para meditar y unirme de corazón a las intenciones de Cristo.", v: 4 },
+                    { t: "Procuro que mi vida entera sea una oración continua, permitiendo que Jesús viva y ore en mí a cada instante.", v: 5 }
+                ]
+            },
+            {
+                id: 2,
+                q: "Al contemplar y rezar el Rosario o las devociones marianas, ¿cuál es tu actitud principal hacia la Virgen María?",
+                quote: "El santo afirmaba que Jesús y María tienen un solo Corazón espiritualmente por su perfecta unión.",
+                options: [
+                    { t: "No suelo practicar la devoción mariana ni rezo el Rosario con frecuencia.", v: 1 },
+                    { t: "Rezo oraciones a María de forma mecánica, más por costumbre que por amor auténtico.", v: 2 },
+                    { t: "Amo a la Virgen y le pido su protección en momentos específicos de mi jornada.", v: 3 },
+                    { t: "Contemplar sus virtudes al rezar y le consagro mis intenciones diarias con confianza.", v: 4 },
+                    { t: "Me entrego por completo a Ella para que me introduzca en lo más profundo del Corazón de su divino Hijo.", v: 5 }
+                ]
+            },
+            {
+                id: 3,
+                q: "¿Cómo es tu preparación y acción de gracias al participar en el misterio de la Santa Eucaristía?",
+                quote: "San Juan Eudes sugería usar el amor de María para compensar la tibieza de nuestro propio corazón al recibir a Jesús.",
+                options: [
+                    { t: "Asisto por obligación o costumbre social, sin prepararme ni detenerme a agradecer después.", v: 1 },
+                    { t: "A veces asisto a la Misa dominical, pero me cuesta concentrarme en la liturgia.", v: 2 },
+                    { t: "Asisto con regularidad todos los domingos y guardo un breve silencio antes de que comience.", v: 3 },
+                    { t: "Me preparo meditando las lecturas del día y dedico un tiempo de oración ferviente tras comulgar.", v: 4 },
+                    { t: "Ofrezco el Corazón de María a Jesús y el Corazón de Jesús al Padre para suplir mis propias limitaciones al comulgar.", v: 5 }
+                ]
+            },
+            {
+                id: 4,
+                q: "¿Frecuentas la adoración al Santísimo Sacramento o realizas visitas conscientes al Sagrario?",
+                quote: "Para San Juan Eudes, el Corazón de Jesús es una hoguera inmensa de amor presente en el Sacramento.",
+                options: [
+                    { t: "Nunca visito el Sagrario fuera de los horarios de la Misa.", v: 1 },
+                    { t: "He ido a adorar al Santísimo únicamente en retiros o eventos especiales de la Iglesia.", v: 2 },
+                    { t: "Visito el Santísimo esporádicamente cuando siento un peso grande en mi alma.", v: 3 },
+                    { t: "Procuro apartar un tiempo fijo a la semana para estar en silencio adorando al Señor.", v: 4 },
+                    { t: "El Sagrario es mi imán cotidiano; allí adoro el Corazón de Jesús y me consagro a su tierno amor.", v: 5 }
+                ]
+            },
+            {
+                id: 5,
+                q: "Cuando experimentas aridez espiritual o desolación en tu oración, ¿cuál es tu respuesta?",
+                quote: "En el Memorial, el santo alaba a Dios tanto en las grandes alegrías como en las prolongadas penas.",
+                options: [
+                    { t: "Abandono el hábito de orar porque me frustra no sentir la presencia de Dios.", v: 1 },
+                    { t: "Siento desánimo y reduzco considerablemente mi tiempo de oración diaria.", v: 2 },
+                    { t: "Sigo rezando por inercia, aunque con disgusto interno y desatención.", v: 3 },
+                    { t: "Persevero con fidelidad en mis horas de oración, aceptando la falta de consuelo con paciencia.", v: 4 },
+                    { t: "Adoro los designios divinos en mi aridez y me uno a la perfecta sumisión y despojo de Jesús en la Cruz.", v: 5 }
+                ]
+            }
+        ]
+    },
+    {
+        category: "CATEGORÍA 2 — Sacramento de la Reconciliación",
+        questions: [
+            {
+                id: 6,
+                q: "¿Con qué frecuencia y disposición interior te acercas al Sacramento de la Reconciliación?",
+                quote: "San Juan Eudes instaba a borrar todo lo que desagrada al purísimo Corazón de nuestro Salvador.",
+                options: [
+                    { t: "Pasan años o meses muy largos sin que sienta la necesidad de confesar mis pecados.", v: 1 },
+                    { t: "Solo me confieso en situaciones extremas o durante los tiempos litúrgicos obligatorios.", v: 2 },
+                    { t: "Me confieso algunas veces al año cuando mi conciencia me inquieta notablemente.", v: 3 },
+                    { t: "Acudo regularmente a la confesión mensual para mantener mi alma limpia y recibir la gracia.", v: 4 },
+                    { t: "Me confieso con frecuencia detestando el pecado por ofender al amor infinito del Corazón de Jesús.", v: 5 }
+                ]
+            },
+            {
+                id: 7,
+                q: "¿Cómo realizas tu examen de conciencia previo a recibir la absolución del sacerdote?",
+                quote: "El santo pasaba largas jornadas preparando misiones dedicadas enteramente a la conversión de los corazones.",
+                options: [
+                    { t: "No suelo examinar mi conciencia; improviso mis pecados al entrar al confesionario.", v: 1 },
+                    { t: "Hago un repaso rápido mental un minuto antes de confesarme.", v: 2 },
+                    { t: "Reviso una lista de mandamientos para identificar mis faltas externas principales.", v: 3 },
+                    { t: "Dedico un tiempo prolongado en oración pidiendo al Espíritu Santo que ilumine mi interior.", v: 4 },
+                    { t: "Examino mis pensamientos, palabras y omisiones a la luz del Corazón de Jesús, suplicándole que purifique mi espíritu.", v: 5 }
+                ]
+            },
+            {
+                id: 8,
+                q: "Después de recibir el perdón en la confesión, ¿qué lugar ocupa la reparación en tu vida?",
+                quote: "San Juan Eudes fundó comunidades con el propósito explícito de glorificar a Dios y reparar las ofensas cometidas.",
+                options: [
+                    { t: "Cumplo la penitencia obligatoria rápido y me olvido por completo del tema.", v: 1 },
+                    { t: "A veces olvido rezar o realizar la penitencia que me asignó el confesor.", v: 2 },
+                    { t: "Cumplo la penitencia con respeto e intento no volver a cometer los mismos errores.", v: 3 },
+                    { t: "Busco reparar activamente el daño causado a mi prójimo mediante obras concretas de bien.", v: 4 },
+                    { t: "Ofrezco mi vida entera en espíritu de alabanza y continua conversión para reparar las ofensas contra los Sagrados Corazones.", v: 5 }
+                ]
+            }
+        ]
+    },
+    {
+        category: "CATEGORÍA 3 — Mortificación y Cruz",
+        questions: [
+            {
+                id: 9,
+                q: "Ante los sufrimientos cotidianos (como las enfermedades o las contrariedades del camino), ¿cuál es tu reacción?",
+                quote: "En su Memorial, el santo agradece a Dios por sus severas hernias y dolores de viaje: '¡Gloria a ti, Señor!'.",
+                options: [
+                    { t: "Me irrito, me quejo constantemente y siento resentimiento hacia Dios por mi mala fortuna.", v: 1 },
+                    { t: "Soporto la situación con amargura y resignación pasiva, esperando únicamente que pase pronto.", v: 2 },
+                    { t: "Intento ofrecer mi dolor a Dios, aunque internamente lucho contra la falta de consuelo.", v: 3 },
+                    { t: "Acepto las cruces cotidianas con paz, sabiendo que Dios permite todo para mi purificación.", v: 4 },
+                    { t: "Bendigo al Señor en mis dolencias y considero una gracia especial participar en los padecimientos de su Corazón.", v: 5 }
+                ]
+            },
+            {
+                id: 10,
+                q: "¿Practicas voluntariamente la mortificación de los sentidos o privaciones por amor a Dios?",
+                quote: "La doctrina eudista insiste en que para revestirse de Jesús es indispensable despojarse del hombre viejo.",
+                options: [
+                    { t: "No realizo ninguna privación; busco siempre la comodidad y satisfacer mis gustos.", v: 1 },
+                    { t: "Solo cumplo con el ayuno elemental de la Cuaresma cuando me lo recuerdan.", v: 2 },
+                    { t: "Hago pequeños sacrificios de comida o comodidad de vez en cuando si me nace.", v: 3 },
+                    { t: "Mantengo disciplinas constantes semanales de sobriedad en mis alimentos y palabras.", v: 4 },
+                    { t: "Me despojo voluntariamente de mis afectos desordenados para que el Corazón de Jesús reine plenamente en mí.", v: 5 }
+                ]
+            },
+            {
+                id: 11,
+                q: "¿Cómo manejas tu orgullo cuando recibes críticas injustas, calumnias o humillaciones?",
+                quote: "El santo sufrió numerosas oposiciones en la corte y por parte de los jansenistas, respondiendo siempre con bendiciones.",
+                options: [
+                    { t: "Reacciono con rabia, ataco a quien me ofende y busco vengarme o limpiar mi nombre a toda costa.", v: 1 },
+                    { t: "Me callo por fuera, pero por dentro guardo un rencor profundo que dura mucho tiempo.", v: 2 },
+                    { t: "Sufro en silencio e intento perdonar, aunque me cuesta mucho recuperar la paz.", v: 3 },
+                    { t: "Acepto la humillación con paciencia y ruego a Dios por las personas que me contradicen.", v: 4 },
+                    { t: "Me alegro de ser asociado al oprobio de la Cruz de Cristo y alabo a Dios por purificar mi soberbia.", v: 5 }
+                ]
+            },
+            {
+                id: 12,
+                q: "¿Cuidas el recogimiento de tu mente controlando la sobreexposición a las distracciones del mundo?",
+                quote: "San Juan Eudes llamaba al alma cristiana 'un templo vivo de la Santísima Trinidad'.",
+                options: [
+                    { t: "Consumo entretenimiento y redes sociales sin filtro alguno, perdiendo horas valiosas.", v: 1 },
+                    { t: "Me doy cuenta de que las distracciones mundanas me alejan de Dios, pero no hago nada por cambiar.", v: 2 },
+                    { t: "Intento poner límites a los ruidos del mundo, aunque caigo con frecuencia en la curiosidad vana.", v: 3 },
+                    { t: "Establezco momentos fijos de ayuno digital y silencio total para cultivar mi vida interior.", v: 4 },
+                    { t: "Mantengo mi atención fija en el Corazón de Jesús, de modo que el ruido exterior no penetre en mi santuario interior.", v: 5 }
+                ]
+            }
+        ]
+    },
+    {
+        category: "CATEGORÍA 4 — Caridad y Servicio",
+        questions: [
+            {
+                id: 13,
+                q: "¿Estás dispuesto a desgastar tu vida y tu tiempo por la salvación y el alivio espiritual de tu prójimo?",
+                quote: "Encarna el carisma eudista del celo por la salvación de las almas, predicando misiones infatigablemente.",
+                options: [
+                    { t: "Prefiero no complicarme la vida con los problemas de los demás; priorizo mi comodidad.", v: 1 },
+                    { t: "Ayudo a los demás solo si me sobra tiempo o si la tarea no requiere demasiado esfuerzo.", v: 2 },
+                    { t: "Participo en obras de servicio de manera regular, aunque a veces lo hago de mal humor.", v: 3 },
+                    { t: "Me entrego con generosidad al servicio del prójimo, ofreciendo mis talentos para su edificación.", v: 4 },
+                    { t: "Consumo mis fuerzas con ardiente celo apostólico por las almas, impulsado por el amor del Corazón de Cristo.", v: 5 }
+                ]
+            },
+            {
+                id: 14,
+                q: "¿Cómo es tu oración y actitud hacia aquellos que te han traicionado, herido o perseguido abiertamente?",
+                quote: "San Juan Eudes exhortaba a desterrar toda hiel para que solo reine el Corazón que es todo amor.",
+                options: [
+                    { t: "Les deseo el mal y corto de forma tajante cualquier tipo de relación.", v: 1 },
+                    { t: "Trato de no pensar en ellos, pero si me los mencionan siento un nudo de amargura.", v: 2 },
+                    { t: "Digo que los perdono con la mente, pero me niego rotundamente a rezar por su bienestar.", v: 3 },
+                    { t: "Rezo por ellos de vez en cuando, pidiéndole al Señor que pacifique sus vidas.", v: 4 },
+                    { t: "Los abrazo con el Corazón de Jesús, amándolos sinceramente y devolviendo torrentes de bendición.", v: 5 }
+                ]
+            },
+            {
+                id: 15,
+                q: "¿Compartes tus bienes materiales y recursos económicos con los pobres y desamparados?",
+                quote: "Durante la peste de 1627 y 1631, el santo arriesgó su vida viviendo en un tonel para socorrer a los infectados.",
+                options: [
+                    { t: "Nunca doy limosna ni aporto a causas benéficas; considero que cada quien debe valerse por sí mismo.", v: 1 },
+                    { t: "Doy alguna moneda suelta cuando me sobra dinero y la miseria se presenta frente a mí.", v: 2 },
+                    { t: "Destino un pequeño porcentaje de mis ingresos a la caridad de forma regular y ordenada.", v: 3 },
+                    { t: "Me privo de lujos personales para poder sostener a familias necesitadas y obras de la Iglesia.", v: 4 },
+                    { t: "Veo en cada pobre a Jesús sufriente y pongo todo lo que soy y tengo a su servicio con infinito amor.", v: 5 }
+                ]
+            },
+            {
+                id: 16,
+                q: "¿Ofreces sufragios, oraciones y sacrificios constantes por la purificación de las almas del Purgatorio?",
+                quote: "San Juan Eudes enseñaba a usar el valor infinito del amor divino para interceder ante la justicia de Dios.",
+                options: [
+                    { t: "No suelo rezar por los difuntos; considero que su destino ya está sellado.", v: 1 },
+                    { t: "Solo pido por los fallecidos el día de su funeral o en la conmemoración de los fieles difuntos.", v: 2 },
+                    { t: "Rezo por mis familiares difuntos con frecuencia, pero me olvido de las demás almas abandonadas.", v: 3 },
+                    { t: "Incluyo diariamente una petición por las benditas almas del Purgatorio en mis oraciones.", v: 4 },
+                    { t: "Ofrezco los méritos infinitos de los Corazones de Jesús y María para obtener el pronto descanso de las almas.", v: 5 }
+                ]
+            },
+            {
+                id: 17,
+                q: "Cuando contemplas las heridas espirituales y materiales del prójimo, ¿te conmueves con las entrañas de misericordia de Dios?",
+                quote: "El santo compuso el oficio litúrgico del Corazón de Jesús, alabándolo como fuente inagotable de compasión.",
+                options: [
+                    { t: "El dolor del mundo no me afecta; prefiero ignorar las noticias tristes para proteger mi tranquilidad.", v: 1 },
+                    { t: "Siento una lástima pasajera por los que sufren, pero pronto me distraigo con mis asuntos.", v: 2 },
+                    { t: "Me entristece ver el pecado ajeno, pero suelo juzgar duramente a quienes caen.", v: 3 },
+                    { t: "Intercedo en oración por los pecadores y sufrientes, pidiendo a Dios que les otorgue consuelo.", v: 4 },
+                    { t: "Siento que el Corazón de Jesús late en mi pecho, impulsándome a derramar misericordia sobre toda miseria.", v: 5 }
+                ]
+            }
+        ]
+    },
+    {
+        category: "CATEGORÍA 5 — Docilidad Espiritual",
+        questions: [
+            {
+                id: 18,
+                q: "¿Cuentas con un director espiritual o confesor fijo con quien confrontas las decisiones importantes de tu alma?",
+                quote: "San Juan Eudes buscaba siempre la aprobación de los obispos para garantizar que sus obras procedían de Dios.",
+                options: [
+                    { t: "No creo en la dirección espiritual; considero que basta con mi propia conciencia.", v: 1 },
+                    { t: "He querido buscar un guía espiritual, pero pospongo la búsqueda indefinidamente.", v: 2 },
+                    { t: "Hablo con diferentes sacerdotes de manera esporádica sin dar continuidad a ningún proceso.", v: 3 },
+                    { t: "Tengo un confesor al que acudo regularmente y escucho sus consejos con atención.", v: 4 },
+                    { t: "Someto mi voluntad a mi director espiritual viendo en él la autoridad misma del Corazón de Jesús.", v: 5 }
+                ]
+            },
+            {
+                id: 19,
+                q: "Cuando tus proyectos personales se desmoronan por completo, ¿cómo respondes ante los planes de la Divina Providencia?",
+                quote: "El lema del santo frente a los contratiempos era bendecir siempre los adorables decretos divinos.",
+                options: [
+                    { t: "Me desespero, cuestiono la bondad de Dios y caigo en una profunda crisis de fe.", v: 1 },
+                    { t: "Acepto el fracaso de mala gana, llenándome de frustración e insatisfacción interior.", v: 2 },
+                    { t: "Trato de resignarme pensando que las cosas pasan por algo, aunque pierdo el entusiasmo.", v: 3 },
+                    { t: "Acepto el cambio de planes con serenidad, confiando en que Dios sabe qué es lo mejor.", v: 4 },
+                    { t: "Adoro con gozo la santa voluntad de Dios en el fracaso, sabiendo que Su designio es perfecto.", v: 5 }
+                ]
+            },
+            {
+                id: 20,
+                q: "¿Vives con fidelidad filial las enseñanzas del Magisterio y los tiempos litúrgicos propuestos por la Iglesia?",
+                quote: "San Juan Eudes dedicó gran parte de su vida a la fundación de seminarios para renovar el espíritu de la Iglesia.",
+                options: [
+                    { t: "Selecciono qué creer de la Iglesia y descarto lo que no se ajusta a mi comodidad.", v: 1 },
+                    { t: "Cumply los preceptos mínimos obligatorios por inercia cultural y sin comprenderlos.", v: 2 },
+                    { t: "Me esfuerzo por estudiar el Catecismo y vivir en gracia de acuerdo con las normas eclesiales.", v: 3 },
+                    { t: "Sigo con fervor el año litúrgico, adaptando mi vida diaria a las fiestas y ayunos.", v: 4 },
+                    { t: "Amo a la Iglesia como al Cuerpo místico de Cristo y me consagro a su renovación.", v: 5 }
+                ]
+            },
+            {
+                id: 21,
+                q: "En tus decisiones importantes, ¿antepones el discernimiento en la oración a tus propios impulsos?",
+                quote: "El santo jamás iniciaba una fundación sin pasar largas temporadas postrado ante el Santísimo Sacramento.",
+                options: [
+                    { t: "Decido de inmediato según mis apetitos o lo que me dicte el beneficio material inmediato.", v: 1 },
+                    { t: "Decido primero y luego le pido a Dios que bendiga las decisiones que ya tomé.", v: 2 },
+                    { t: "Intento rezar antes de actuar, pero me gana la impaciencia y termino actuando por las mías.", v: 3 },
+                    { t: "Dedico days de oración y pido consejo antes de dar un paso crucial en mi vida.", v: 4 },
+                    { t: "Vacio por completo mi voluntad ante Dios para que sea únicamente Su Espíritu quien actúe a través de mí.", v: 5 }
+                ]
+            },
+            {
+                id: 22,
+                q: "Cuando alguien te corrige fraternalmente o expone tus faltas, ¿cuál es tu reacción interna?",
+                quote: "San Juan Eudes enseñaba que reconocer la propia miseria es el primer peldaño para ser llenados por la gracia.",
+                options: [
+                    { t: "Me ofendo gravemente, arremeto con soberbia y descalifico por completo a quien me corrige.", v: 1 },
+                    { t: "Niego la acusación con mentiras o excusas para salvaguardar mi reputación.", v: 2 },
+                    { t: "Me deprimo y me siento inútil, cayendo en un desánimo destructivo impulsado por el orgullo.", v: 3 },
+                    { t: "Escucho la corrección con respeto y procuro enmendar la falta detectada mediante la oración.", v: 4 },
+                    { t: "Agradezco profundamente la corrección viéndola como un acto de la misericordia divina.", v: 5 }
+                ]
+            },
+            {
+                id: 23,
+                q: "¿Practicas la obediencia interna hacia tus superiores legítimos, incluso cuando disientes?",
+                quote: "Manifiesta la mística de la obediencia eudista, fundamental en todas las obras descritas en su Memorial.",
+                options: [
+                    { t: "Desobedezco abiertamente si la orden recibida no coincide con mi opinión personal.", v: 1 },
+                    { t: "Obedezco solo de palabra mientras saboteo los procesos por la espalda.", v: 2 },
+                    { t: "Cumplo la orden arrastrando los pies y quejándome amargamente con todo el mundo.", v: 3 },
+                    { t: "Someto mis criterios con madurez y ejecuto la indicación buscando el bien común.", v: 4 },
+                    { t: "Veo en la voz del superior la voluntad misma de Dios y me adhiero a ella con gozo de hijo.", v: 5 }
+                ]
+            }
+        ]
+    },
+    {
+        category: "CATEGORÍA 6 — Fe y Confianza en Dios",
+        questions: [
+            {
+                id: 24,
+                q: "Ante los momentos de profunda oscuridad o crisis existenciales, ¿dónde anclas tu seguridad?",
+                quote: "En el Memorial, el santo alaba la fidelidad infinita de Dios en medio de los mayores abandonos humanos.",
+                options: [
+                    { t: "Me hundo en el pánico, recurro a vicios mundanos o salidas falsas para anestesiar mi angustia.", v: 1 },
+                    { t: "Confío ciegamente en mis propias fuerzas o en las seguridades financieras.", v: 2 },
+                    { t: "Busco el consejo de amigos del mundo antes de postrarme en oración ante el Señor.", v: 3 },
+                    { t: "Acudo de inmediato a los Sacramentos y clamo la intercesión de la Virgen con fe.", v: 4 },
+                    { t: "Me arrojo con confianza ciega en el océano infinito de la Divina Providencia, descansando en Sus manos.", v: 5 }
+                ]
+            },
+            {
+                id: 25,
+                q: "¿Vives con la certeza de la compañía de tu Ángel de la Guarda, encomendándole tus pasos diarios?",
+                quote: "San Juan Eudes compuso oraciones invitando a los santos ángeles a bendecir perpetuamente al Corazón de María.",
+                options: [
+                    { t: "No creo en la existencia de los Ángeles de la Guarda o me parece un mito infantil.", v: 1 },
+                    { t: "Sé de su existencia, pero jamás lo invoco ni me acuerdo de él en mi vida diaria.", v: 2 },
+                    { t: "Le rezo la oración tradicional por la noche por pura costumbre retenida de la infancia.", v: 3 },
+                    { t: "Invoco la protección de mi Ángel de la Guarda al salir de viaje o ante un peligro.", v: 4 },
+                    { t: "Trato a mi Ángel como un fiel compañero de misión, pidiéndole que adore a los Sagrados Corazones por mí.", v: 5 }
+                ]
+            },
+            {
+                id: 26,
+                q: "¿Consideras el amor a la Santísima Virgen María como un elemento indispensable para tu salvación?",
+                quote: "En su Memorial, el santo le atribuye explícitamente a María el haber trocado sus aflicciones en alegrías increíbles.",
+                options: [
+                    { t: "No considero relevante la devoción mariana para mi camino de fe personal.", v: 1 },
+                    { t: "Tengo alguna imagen de María en casa, pero no le dedico tiempo de oración íntima.", v: 2 },
+                    { t: "Rezo algunas oraciones marianas y participo de sus festividades principales con agrado.", v: 3 },
+                    { t: "Me he consagrado a la Virgen y procuro que todas mis acciones pasen por sus manos maternales.", v: 4 },
+                    { t: "Para mí, María es mi Madre de Gracia, a quien debo cada favor y el conocimiento íntimo del Salvador.", v: 5 }
+                ]
+            },
+            {
+                id: 27,
+                q: "¿Buscas mantener la conciencia de la presencia de Dios en medio del trabajo o las ocupaciones cotidianas?",
+                quote: "El santo insistía en que no hay separación entre la vida mística y los deberes si se hacen por puro amor.",
+                options: [
+                    { t: "En mi jornada diaria solo pienso en mis tareas; a Dios lo dejo para el templo.", v: 1 },
+                    { t: "Me acuerdo de Dios un segundo antes de comer o si ocurre un accidente.", v: 2 },
+                    { t: "Intento rezar jaculatorias a lo largo del día, aunque me olvido con frecuencia.", v: 3 },
+                    { t: "Comienzo y termino mis labores ofreciéndolas formalmente a la gloria de la Trinidad.", v: 4 },
+                    { t: "Camino ininterrumpidamente bajo la mirada amorosa de Dios, ejecutando todo en unión con Jesús.", v: 5 }
+                ]
+            },
+            {
+                id: 28,
+                q: "Cuando acechan preocupaciones sobre el futuro financiero o la salud, ¿cómo ejerce su papel la confianza?",
+                quote: "El santo enfrentó la escasez absoluta de fondos en sus fundaciones, viendo siempre actuar la mano providente del Padre.",
+                options: [
+                    { t: "Me consumo en la ansiedad, padezco insomnio y actúo con desconfianza.", v: 1 },
+                    { t: "Me preocupo en exceso, aunque intento rezar un poco para calmar mis nervios.", v: 2 },
+                    { t: "Confío en Dios cuando las cuentas están pagadas y la salud me acompaña perfectamente.", v: 3 },
+                    { t: "Entrego mis temores en el altar mediante la oración y procuro trabajar con honradez.", v: 4 },
+                    { t: "Descanso absolutamente en el Corazón de Jesús, con la certeza de que Su Providencia jamás abandona.", v: 5 }
+                ]
+            },
+            {
+                id: 29,
+                q: "¿Te detienes a enumerar las bendiciones de Dios en tu vida para entonar un canto de continua gratitud?",
+                quote: "Inspirado en el espíritu del santo: 'Memoria de los principales favores que he recibido de Dios... Por ellos le alabo'.",
+                options: [
+                    { t: "Nunca agradezco; suelo centrarme obsesivamente en lo que me falta.", v: 1 },
+                    { t: "Doy gracias a Dios únicamente ante hitos espectaculares como ganar un premio o sanar.", v: 2 },
+                    { t: "Agradezco formalmente en mis oraciones mecánicas por educación o costumbre.", v: 3 },
+                    { t: "Frecuentemente reviso mi historia personal reconociendo con alegría la bondad del Señor.", v: 4 },
+                    { t: "Toda mi existencia es un memorial vivo de gratitud, alabando al Señor por Sus incontables misericordias.", v: 5 }
+                ]
+            },
+            {
+                id: 30,
+                q: "¿Cómo interpretas el misterio del final de tu vida terrenal y la llegada de la muerte?",
+                quote: "Al elegir sucesor en 1680 (punto 104 del Memorial), el santo preparaba su transición con total paz.",
+                options: [
+                    { t: "Me horroriza pensar en la muerte; evito los funerales y cualquier mención al respecto.", v: 1 },
+                    { t: "Me produce gran ansiedad e incertidumbre pensar en el juicio definitivo de mis acciones.", v: 2 },
+                    { t: "Espero salvarme por ser una buena persona, procurando no pensar demasiado en el juicio.", v: 3 },
+                    { t: "Acepto la realidad de la muerte con serenidad, preparándome mediante los Sacramentos.", v: 4 },
+                    { t: "Anhelo la muerte no por escapar del mundo, sino para sumergirme eternamente en los Sagrados Corazones.", v: 5 }
+                ]
+            },
+            {
+                id: 31,
+                q: "¿Experimentas una comunión viva e intercesión diaria con los Santos del cielo en tus batallas?",
+                quote: "San Juan Eudes solía terminar sus libros invitando a toda la asamblea celestial a adorar a Jesús.",
+                options: [
+                    { t: "No comprendo la devoción a los santos ni suelo invocar su auxilio.", v: 1 },
+                    { t: "Les pido milagros o favores esporádicos de manera puramente supersticiosa.", v: 2 },
+                    { t: "Tengo simpatía por algunos santos conocidos y guardo sus estampas.", v: 3 },
+                    { t: "Estudio sus vidas para imitar sus virtudes y les pido su guía diaria para avanzar.", v: 4 },
+                    { t: "Me uno espiritualmente a la liturgia del cielo, ofreciendo mis acciones junto con los méritos de los Santos.", v: 5 }
+                ]
+            },
+            {
+                id: 32,
+                q: "¿Mantienes la certeza de que Dios extrae bienes mayores de los acontecimientos más dolorosos de la historia?",
+                quote: "A pesar de sufrir censuras injustas y deserciones, el santo vio crecer milagrosamente su obra gracias a la Providencia.",
+                options: [
+                    { t: "No; ante las tragedias globales o personales concluyo que Dios nos ha abandonado.", v: 1 },
+                    { t: "Me cuesta mucho creerlo y permanezco sumido en el resentimiento por largo tiempo.", v: 2 },
+                    { t: "Acepto que Dios es Todopoderoso en teoría, pero me cuesta aplicarlo cuando sufro directamente.", v: 3 },
+                    { t: "Espero con paciencia que el tiempo revele los planes constructivos del Señor.", v: 4 },
+                    { t: "Sé con certeza absoluta que para los que aman a Dios, todo coopera para el bien.", v: 5 }
+                ]
+            },
+            {
+                id: 33,
+                q: "¿Es el ardiente deseo de la santidad el motor absoluto que orienta cada decisión de tu jornada diaria?",
+                quote: "El santo concluía sus escritos con la solemne exclamación: '¡Viva Jesús!' pidiendo que Su amor reine.",
+                options: [
+                    { t: "Nunca considero la santidad como una meta realista; me basta con no cometer faltas graves.", v: 1 },
+                    { t: "La santidad me parece un llamado exclusivo para religiosos o tiempos antiguos.", v: 2 },
+                    { t: "Deseo agradar a Dios, pero mis ambiciones mundanas suelen ganar el primer lugar.", v: 3 },
+                    { t: "Me esfuerzo a diario por cumplir los mandamientos y evitar el pecado deliberado.", v: 4 },
+                    { t: "Mi único deseo e interés absoluto es amar locamente a Dios y hacer que Jesús reine soberano.", v: 5 }
+                ]
+            }
+        ]
+    }
+];
+
+const levels = [
+    { min: 0, max: 49, name: "Alma en el umbral 🕯️" },
+    { min: 50, max: 82, name: "Alma en camino 🌿" },
+    { min: 83, max: 115, name: "Alma que crece 🌾" },
+    { min: 116, max: 140, name: "Alma fervorosa 🔥" },
+    { min: 141, max: 165, name: "Alma transformada en Cristo ✨" }
+];
+
+const container = document.getElementById('questions-container');
+
+// Renderizado dinámico organizado por categorías
+quizData.forEach(cat => {
+    const catHeader = document.createElement('div');
+    catHeader.className = 'category-title';
+    catHeader.innerText = cat.category;
+    container.appendChild(catHeader);
+
+    cat.questions.forEach(q => {
+        const qCard = document.createElement('div');
+        qCard.className = 'question-card';
+
+        let quoteHtml = q.quote ? `<span class="question-quote">"${q.quote}"</span>` : '';
+        
+        qCard.innerHTML = `
+            ${quoteHtml}
+            <div class="question-text">${q.id}. ${q.q}</div>
+            <div class="options-container">
+                ${q.options.map((opt, index) => `
+                    <label class="option-label" id="label-q${q.id}-${index}">
+                        <input type="radio" name="q${q.id}" value="${opt.v}" required onchange="selectOption(${q.id}, ${index})">
+                        ${opt.t}
+                    </label>
+                `).join('')}
+            </div>
+        `;
+        container.appendChild(qCard);
+    });
+});
+
+function selectOption(questionId, optionIndex) {
+    for(let i=0; i<5; i++){
+        const lbl = document.getElementById(`label-q${questionId}-${i}`);
+        if(lbl) lbl.classList.remove('selected');
+    }
+    const activeLabel = document.getElementById(`label-q${questionId}-${optionIndex}`);
+    if(activeLabel) activeLabel.classList.add('selected');
+}
+
+// Envío del cuestionario y visualización en tiempo real
+document.getElementById('quiz-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    let totalScore = 0;
+    const formData = new FormData(this);
+    
+    for (let value of formData.values()) {
+        totalScore += parseInt(value);
+    }
+
+    let userLevel = "";
+    for (let lvl of levels) {
+        if (totalScore >= lvl.min && totalScore <= lvl.max) {
+            userLevel = lvl.name;
+            break;
+        }
+    }
+
+    document.getElementById('score-text').innerText = `${totalScore} / 165 puntos`;
+    document.getElementById('level-text').innerText = userLevel;
+    
+    const resCard = document.getElementById('result-card');
+    resCard.style.display = 'block';
+    resCard.scrollIntoView({ behavior: 'smooth' });
+});
+</script>
+
+</body>
+</html>
